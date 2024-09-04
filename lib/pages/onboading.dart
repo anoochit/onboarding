@@ -30,6 +30,7 @@ class _OnboadingPageState extends State<OnboadingPage> {
               },
               children: [
                 PageViewItem(
+                  illustration: UnDrawIllustration.business_man,
                   buttonTitle: 'Next',
                   onTap: () {
                     pageController.animateToPage(
@@ -40,6 +41,7 @@ class _OnboadingPageState extends State<OnboadingPage> {
                   },
                 ),
                 PageViewItem(
+                  illustration: UnDrawIllustration.team_chat,
                   buttonTitle: 'Next',
                   onTap: () {
                     pageController.animateToPage(
@@ -50,6 +52,7 @@ class _OnboadingPageState extends State<OnboadingPage> {
                   },
                 ),
                 PageViewItem(
+                  illustration: UnDrawIllustration.team_effort,
                   buttonTitle: 'Finish',
                   onTap: () {
                     // set boarding to true
@@ -92,10 +95,15 @@ class _OnboadingPageState extends State<OnboadingPage> {
 }
 
 class PageViewItem extends StatelessWidget {
-  const PageViewItem({super.key, required this.onTap, this.buttonTitle});
+  const PageViewItem(
+      {super.key,
+      required this.onTap,
+      this.buttonTitle,
+      required this.illustration});
 
   final VoidCallback onTap;
   final String? buttonTitle;
+  final UnDrawIllustration illustration;
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +112,7 @@ class PageViewItem extends StatelessWidget {
         const Spacer(),
         UnDraw(
           color: Theme.of(context).colorScheme.primary,
-          illustration: UnDrawIllustration.business_man,
+          illustration: illustration,
           width: Get.width * 0.8,
         ),
         const Spacer(),
