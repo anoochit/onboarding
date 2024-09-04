@@ -29,7 +29,8 @@ class _OnboadingPageState extends State<OnboadingPage> {
                 });
               },
               children: [
-                PageView1(
+                PageViewItem(
+                  buttonTitle: 'Next',
                   onTap: () {
                     pageController.animateToPage(
                       currentPage + 1,
@@ -38,7 +39,8 @@ class _OnboadingPageState extends State<OnboadingPage> {
                     );
                   },
                 ),
-                PageView2(
+                PageViewItem(
+                  buttonTitle: 'Next',
                   onTap: () {
                     pageController.animateToPage(
                       currentPage + 1,
@@ -47,7 +49,8 @@ class _OnboadingPageState extends State<OnboadingPage> {
                     );
                   },
                 ),
-                PageView3(
+                PageViewItem(
+                  buttonTitle: 'Finish',
                   onTap: () {
                     // set boarding to true
                     GetStorage().write('onboarding', true);
@@ -88,10 +91,11 @@ class _OnboadingPageState extends State<OnboadingPage> {
   }
 }
 
-class PageView1 extends StatelessWidget {
-  const PageView1({super.key, required this.onTap});
+class PageViewItem extends StatelessWidget {
+  const PageViewItem({super.key, required this.onTap, this.buttonTitle});
 
   final VoidCallback onTap;
+  final String? buttonTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -104,59 +108,12 @@ class PageView1 extends StatelessWidget {
           width: Get.width * 0.8,
         ),
         const Spacer(),
-        OutlinedButton(
-          onPressed: () => onTap(),
-          child: const Text('Next'),
-        ),
-      ],
-    );
-  }
-}
-
-class PageView2 extends StatelessWidget {
-  const PageView2({super.key, required this.onTap});
-
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Spacer(),
-        UnDraw(
-          color: Theme.of(context).colorScheme.primary,
-          illustration: UnDrawIllustration.team_chat,
-          width: Get.width * 0.8,
-        ),
-        const Spacer(),
-        OutlinedButton(
-          onPressed: () => onTap(),
-          child: const Text('Next'),
-        ),
-      ],
-    );
-  }
-}
-
-class PageView3 extends StatelessWidget {
-  const PageView3({super.key, required this.onTap});
-
-  final VoidCallback onTap;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Spacer(),
-        UnDraw(
-          color: Theme.of(context).colorScheme.primary,
-          illustration: UnDrawIllustration.team_effort,
-          width: Get.width * 0.8,
-        ),
-        const Spacer(),
-        OutlinedButton(
-          onPressed: () => onTap(),
-          child: const Text('Finish'),
-        ),
+        (buttonTitle != null)
+            ? OutlinedButton(
+                onPressed: () => onTap(),
+                child: Text('$buttonTitle'),
+              )
+            : Container(),
       ],
     );
   }
