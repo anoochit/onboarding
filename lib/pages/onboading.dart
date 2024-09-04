@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:ms_undraw/ms_undraw.dart';
 import 'package:onboading/pages/home.dart';
 
@@ -49,7 +50,7 @@ class _OnboadingPageState extends State<OnboadingPage> {
                 PageView3(
                   onTap: () {
                     // set boarding to true
-                    //GetStorage().write('onboarding', true);
+                    GetStorage().write('onboarding', true);
 
                     // goto home page
                     Get.offAll(() => const HomePage());
